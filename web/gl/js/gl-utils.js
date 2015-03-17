@@ -25,6 +25,9 @@ function initShaders() {
     shaderProgram = gl.createProgram();
     gl.attachShader(shaderProgram, vertexShader);
     gl.attachShader(shaderProgram, fragmentShader);
+
+    //gl.bindAttribLocation(shaderProgram, 0, "a_Position");
+    //gl.enableVertexAttribArray(0);
     gl.linkProgram(shaderProgram);
 
     if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
@@ -33,6 +36,7 @@ function initShaders() {
 
     gl.useProgram(shaderProgram);
     gl.program = shaderProgram;
+
     //shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
     //gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
     //shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
