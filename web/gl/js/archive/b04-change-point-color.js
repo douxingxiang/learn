@@ -71,4 +71,11 @@ function onClick(e, gl, canvas, a_Position, u_fragcolor)
 
         gl.drawArrays(gl.POINTS, 0, 1);
     }
+
+    /**
+     * 统一变量
+     *
+     * 精度修饰符（precision qualifier）
+     *  precision mediump float;
+     */
 }

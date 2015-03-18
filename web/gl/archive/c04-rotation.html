@@ -2,20 +2,24 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/index.css" type="text/css" />
+    <link rel="stylesheet" href="../css/index.css" type="text/css" />
     <title>WebGL</title>
 </head>
 <body onload="main()">
     <canvas id="canvas" width="640" height="480">
         你的浏览器不支持canvas标签！
     </canvas>
-    <script type="text/javascript" src="js/gl-utils.js"></script>
-    <script type="text/javascript" src="js/b04-change-point-color.js"></script>
+    <script type="text/javascript" src="../js/gl-utils.js"></script>
+    <script type="text/javascript" src="js/c04-rotation.js"></script>
 
     <script id="shader-vs" type="x-shader/x-vertex">
         attribute vec4 a_Position;
+        uniform float u_cosb, u_sinb;
         void main() {
-            gl_Position = a_Position;//正中心
+            gl_Position.x = a_Position.x * u_cosb - a_Position.y * u_sinb;
+            gl_Position.y = a_Position.x * u_sinb + a_Position.y * u_cosb;
+            gl_Position.z = a_Position.z;
+            gl_Position.w = 1.0;
             gl_PointSize = 10.0;//点大小
         }
     </script>
