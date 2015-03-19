@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/index.css" type="text/css" />
+    <title>WebGL</title>
+</head>
+<body onload="main()">
+    <canvas id="canvas" width="640" height="480">
+        你的浏览器不支持canvas标签！
+    </canvas>
+    <script type="text/javascript" src="js/gl-utils.js"></script>
+    <script type="text/javascript" src="js/cuon-matrix.js"></script>
+    <script type="text/javascript" src="js/e06-multi-texture.js"></script>
+
+    <script id="shader-vs" type="x-shader/x-vertex">
+        attribute   vec4    a_position;
+        attribute   vec2    a_textcoord;
+        varying     vec2    v_textcoord;
+        void main() {
+            gl_Position = a_position;
+            v_textcoord = a_textcoord;
+        }
+    </script>
+    <script id="shader-fs" type="x-shader/x-fragment">
+        precision mediump float;//需要指定精度
+        uniform sampler2D   u_sampler0;
+        uniform sampler2D   u_sampler1;
+        varying vec2        v_textcoord;
+        void main(void) {
+            vec4 color0 = texture2D(u_sampler0, v_textcoord);
+            vec4 color1 = texture2D(u_sampler1, v_textcoord);
+            gl_FragColor = color0 * color1;
+        }
+    </script>
+</body>
+</html>
