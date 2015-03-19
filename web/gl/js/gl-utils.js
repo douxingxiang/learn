@@ -10,7 +10,7 @@ function initGL(canvas) {
         gl.viewportWidth = canvas.width;
         gl.viewportHeight = canvas.height;
     } catch(e) {}
-
+    
     if (!gl) {
         console.log("WebGL初始化失败！");
     }

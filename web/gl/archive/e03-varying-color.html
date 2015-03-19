@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/index.css" type="text/css" />
+    <title>WebGL</title>
+</head>
+<body onload="main()">
+    <canvas id="canvas" width="640" height="480">
+        你的浏览器不支持canvas标签！
+    </canvas>
+    <script type="text/javascript" src="../js/gl-utils.js"></script>
+    <script type="text/javascript" src="../js/cuon-matrix.js"></script>
+    <script type="text/javascript" src="../js/e03-varying-color.js"></script>
+
+    <script id="shader-vs" type="x-shader/x-vertex">
+        attribute   vec4    a_position;
+        attribute   float   a_pointsize;
+        attribute   vec4    a_color;//a_color由缓冲区数值填充
+        varying     vec4    v_color;//v_color由定点着色器传递给片段着色器
+        void main() {
+            gl_Position = a_position;
+            gl_PointSize = a_pointsize;
+            v_color = a_color;
+        }
+    </script>
+    <script id="shader-fs" type="x-shader/x-fragment">
+        precision mediump float;//需要指定精度
+        varying vec4    v_color;
+        void main(void) {
+            gl_FragColor = v_color;
+        }
+    </script>
+</body>
+</html>

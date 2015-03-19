@@ -10,21 +10,24 @@
         你的浏览器不支持canvas标签！
     </canvas>
     <script type="text/javascript" src="js/gl-utils.js"></script>
-    <script type="text/javascript" src="js/c05-rotation-with-matrix.js"></script>
+    <script type="text/javascript" src="js/cuon-matrix.js"></script>
+    <script type="text/javascript" src="js/e05-texture-image.js"></script>
 
     <script id="shader-vs" type="x-shader/x-vertex">
-        attribute vec4 a_Position;
-        uniform mat4 u_xform;
+        attribute   vec4    a_position;
+        attribute   vec2    a_textcoord;
+        varying     vec2    v_textcoord;
         void main() {
-            gl_Position = u_xform * a_Position;
-            gl_PointSize = 10.0;//点大小
+            gl_Position = a_position;
+            v_textcoord = a_textcoord;
         }
     </script>
     <script id="shader-fs" type="x-shader/x-fragment">
         precision mediump float;//需要指定精度
-        uniform vec4 u_fragcolor;
+        uniform sampler2D   u_sampler;
+        varying vec2        v_textcoord;
         void main(void) {
-            gl_FragColor = u_fragcolor;
+            gl_FragColor = texture2D(u_sampler, v_textcoord);
         }
     </script>
 </body>

@@ -11,21 +11,22 @@
     </canvas>
     <script type="text/javascript" src="js/gl-utils.js"></script>
     <script type="text/javascript" src="js/cuon-matrix.js"></script>
-    <script type="text/javascript" src="js/d03-basic-animation.js"></script>
+    <script type="text/javascript" src="js/e04-color-by-coord.js"></script>
 
     <script id="shader-vs" type="x-shader/x-vertex">
-        attribute vec4 a_Position;
-        uniform mat4 u_xform;
+        attribute   vec4    a_position;
+        attribute   float   a_pointsize;
         void main() {
-            gl_Position = u_xform * a_Position;
-            gl_PointSize = 10.0;//点大小
+            gl_Position = a_position;
+            gl_PointSize = a_pointsize;
         }
     </script>
     <script id="shader-fs" type="x-shader/x-fragment">
         precision mediump float;//需要指定精度
-        uniform vec4 u_fragcolor;
+        uniform float   u_width;
+        uniform float   u_height;
         void main(void) {
-            gl_FragColor = u_fragcolor;
+            gl_FragColor = vec4(gl_FragCoord.x / u_width, 0.0, gl_FragCoord.y / u_height, 1.0);
         }
     </script>
 </body>

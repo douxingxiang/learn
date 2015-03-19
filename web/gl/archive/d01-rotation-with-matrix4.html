@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/index.css" type="text/css" />
+    <title>WebGL</title>
+</head>
+<body onload="main()">
+    <canvas id="canvas" width="640" height="480">
+        你的浏览器不支持canvas标签！
+    </canvas>
+    <script type="text/javascript" src="../js/gl-utils.js"></script>
+    <script type="text/javascript" src="../js/cuon-matrix.js"></script>
+    <script type="text/javascript" src="../js/d01-rotation-with-matrix4.js"></script>
+
+    <script id="shader-vs" type="x-shader/x-vertex">
+        attribute vec4 a_Position;
+        uniform mat4 u_xform;
+        void main() {
+            gl_Position = u_xform * a_Position;
+            gl_PointSize = 10.0;//点大小
+        }
+    </script>
+    <script id="shader-fs" type="x-shader/x-fragment">
+        precision mediump float;//需要指定精度
+        uniform vec4 u_fragcolor;
+        void main(void) {
+            gl_FragColor = u_fragcolor;
+        }
+    </script>
+</body>
+</html>
